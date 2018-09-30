@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.onload = () => {
+            const socket = io();
+            const sine = new sineAudio();
+            sine.init();
+
+            document.getElementById('btn').onclick = () => {
+                socket.emit('start');
+            };
+
+            socket.on('act', () => {
+                document.getElementById('btn').style.visibility = 'hidden';
+                syncLoop(sine);
+            });
+        }
+
+        const sineAudio = function () {
+            this.audioCtx = new window.AudioContext();
+
+            this.volume = this.audioCtx.createGain();
+            this.wave = this.audioCtx.createOscillator();
+
+            this.init = () => {
+                this.wave.frequency.value = 440;
+                this.wave.type = "sine";
+                this.volume.gain.value = 0;
+                this.wave.start();
+                this.wave.connect(this.volume);
+                this.volume.connect(this.audioCtx.destination);
+            };
+
+            this.on = () => {
+                this.volume.gain.value = 0.5;
+            }
+
+            this.off = () => {
+                this.volume.gain.value = 0;
+            }
+
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        const tic = async (sine) => {
+            sine.on();
+            await sleep(100);
+            sine.off();
+        }
+
+        const metronome = async (sine) => {
+            while (true) {
+                tic(sine);
+                await sleep(900);
+            }
+        }
+
+        const syncLoop = async (sine) => {
+            let day = new Date();
+            let t0 = performance.now();
+
+            while(true) {
+                await sleep(100);
+                if( performance.now() -t0 > 1000 ) {
+                    metronome(sine);
+                    break;
+                }
+            }
+
+            // while (true) {
+            //     await sleep(100);
+            //     if ((new Date().getSeconds() - t0) % 60 === 5) {
+            //         metronome(sine);
+            //         break;
+            //     }
+            // }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <button id="btn" style="width : 80%; height :40%">Start</button>
+
+</body>
+
+</html>
