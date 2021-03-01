@@ -1,13 +1,15 @@
-# nodejs-ensemble-metronome
+# nodejs server push metronome
 
-<b>Command : $node index</b>
+`nodejs-ensemble-metronome$ node app.js
 
-then,
-Execute at "localhost:3000"
+run on 
 
-check your ip linux(ifconfig) 
-then play with your band members.
+` localhost:8080`
 
-I execute this node server on <b>[Samsung] Galaxy note 8 "Termux"</b>  android application.
+check your ip 
 
-<h4>synchronize metronomes &amp; ensemble with band members!</h4>
+` hostname -I`
+
+enter with band members site. then have a lot of fun.
+
+I execute this node server on termux android application.
