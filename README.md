@@ -1,6 +1,6 @@
 # nodejs server push metronome
 
-`nodejs-ensemble-metronome$ node app.js
+`nodejs-ensemble-metronome$ node app.js`
 
 run on 
 
@@ -12,4 +12,4 @@ check your ip
 
 enter with band members site. then have a lot of fun.
 
-I execute this node server on termux android application.
+I executed this node server on termux android application.
