@@ -1,15 +1,17 @@
 # nodejs server push metronome
 
-`nodejs-ensemble-metronome$ node app.js`
+```console
+foo@bar:~/nodejs-ensemble-metronome$ node app.js
+```
 
-run on 
-
-` 0.0.0.0:8080`
+This app run on ` 0.0.0.0:8080 `
 
 check your ip and enter web browser using smart phone.
 
-` hostname -I`
+```console
+foo@bar:~$ hostname -I
+```
 
-ensemble with members then have a lot of fun.
+Then, join and ensemble with band members.
 
-I executed this node server on termux android application.
+I tested this node application server on android phone in termux application.
